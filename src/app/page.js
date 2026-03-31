@@ -1,219 +1,178 @@
 import Image from "next/image";
-import { CiSearch } from "react-icons/ci";
 
-const posts = [
-  {
-    title: "The Architecture of Stillness: Finding Space in Chaos",
-    desc: "Exploring how minimalist spaces influence our internal psychological state.",
-    category: "Art & Design",
-    read: "12 min read",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-  },
-  {
-    title: "Wabi-Sabi and the Modern Maker",
-    desc: "Why imperfection is becoming the new luxury.",
-    category: "Craftsmanship",
-    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
-  },
-  {
-    title: "The Lost Art of Deep Reading",
-    desc: "Reclaiming focus in the age of scrolling.",
-    category: "Literature",
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794",
-  },
-  {
-    title: "Postcards from Naoshima",
-    desc: "A journey through Japan’s art island.",
-    category: "Travel",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-  },
-  {
-    title: "The Quiet Intelligence of Plants",
-    desc: "Exploring plant communication systems.",
-    category: "Science",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-  },
-];
+const posts = Array(9).fill({
+  title: "The Impact of Technology on the Workplace: How Technology is Changing",
+  category: "Technology",
+  author: "Tracey Wilson",
+  date: "August 20, 2022",
+  image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+});
 
-export default function Home() {
+export default function BlogPage() {
   return (
-    <div className="bg-[#f9f9f9] text-[#1a1c1c]">
+    <div className="bg-[#f7f7f7] text-[#1a1a1a]">
 
       {/* 🔷 NAVBAR */}
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur border-b z-50">
-        <div className="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-          <h1 className="font-serif text-xl italic">Coinlooty</h1>
+      <header className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="font-bold text-lg">MetaBlog</h1>
 
-          <nav className="hidden md:flex gap-10 text-sm font-serif">
-            <a className="border-b border-black pb-1">Home</a>
-            <a className="text-zinc-500 hover:text-black">Categories</a>
-            <a className="text-zinc-500 hover:text-black">About</a>
+          <nav className="hidden md:flex gap-6 text-sm text-gray-600">
+            <a>Home</a>
+            <a className="text-black font-medium">Blog</a>
+            <a>Single Post</a>
+            <a>Pages</a>
+            <a>Contact</a>
           </nav>
 
-          <CiSearch/>
+          <input
+            placeholder="Search"
+            className="border px-3 py-1 text-sm rounded-md"
+          />
         </div>
       </header>
 
-      <main className="pt-24">
+      {/* 🔷 PAGE TITLE */}
+      <section className="text-center py-10">
+        <h2 className="text-2xl font-semibold">Page Title</h2>
+        <p className="text-sm text-gray-500 mt-2">Home • Link One</p>
+      </section>
 
-        {/* 🔷 HERO */}
-        <section className="max-w-7xl mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
-          
-          <div>
-            <span className="text-xs uppercase tracking-widest text-zinc-500 mb-4 block">
-              Editorial Vol. 01
+      {/* 🔷 HERO */}
+      <section className="max-w-5xl mx-auto px-6">
+        <div className="relative rounded-xl overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+            alt=""
+            width={1000}
+            height={500}
+            className="w-full h-[300px] object-cover"
+          />
+
+          <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6 text-white">
+            <span className="text-xs bg-blue-600 px-2 py-1 w-fit rounded mb-2">
+              Technology
             </span>
 
-            <h1 className="font-serif text-5xl md:text-6xl leading-tight mb-6">
-              Welcome to <span className="italic">The Silent Editor</span>: Curated stories for the curious mind
-            </h1>
+            <h3 className="text-xl md:text-2xl font-semibold max-w-lg">
+              The Impact of Technology on the Workplace: How Technology is Changing
+            </h3>
 
-            <p className="text-zinc-600 mb-8 max-w-md">
-              A digital monograph exploring art, culture, and slow living.
+            <p className="text-sm mt-2 opacity-80">
+              Tracey Wilson • August 20, 2022
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 🔷 BLOG GRID */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {posts.map((post, i) => (
+            <div key={i} className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition">
+
+              <Image
+                src={post.image}
+                alt=""
+                width={400}
+                height={250}
+                className="rounded-lg w-full h-[180px] object-cover mb-4"
+              />
+
+              <p className="text-xs text-blue-600 mb-1">
+                {post.category}
+              </p>
+
+              <h3 className="font-semibold text-sm mb-2 leading-snug">
+                {post.title}
+              </h3>
+
+              <p className="text-xs text-gray-500">
+                {post.author} • {post.date}
+              </p>
+            </div>
+          ))}
+
+        </div>
+
+        {/* LOAD MORE */}
+        <div className="flex justify-center mt-10">
+          <button className="border px-6 py-2 rounded-md text-sm hover:bg-gray-100">
+            Load More
+          </button>
+        </div>
+      </section>
+
+      {/* 🔷 AD BANNER */}
+      <section className="max-w-3xl mx-auto text-center py-6">
+        <div className="bg-gray-200 text-gray-500 py-6 rounded-md text-sm">
+          Advertisement <br /> You can place ads <br /> 750x100
+        </div>
+      </section>
+
+      {/* 🔷 FOOTER */}
+      <footer className="bg-white mt-16 border-t">
+        <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10 text-sm">
+
+          {/* ABOUT */}
+          <div>
+            <h4 className="font-semibold mb-3">About</h4>
+            <p className="text-gray-600 mb-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <p className="text-gray-500 text-xs">
+              Email: info@jstemplate.net <br />
+              Phone: 880123456789
+            </p>
+          </div>
+
+          {/* LINKS */}
+          <div>
+            <h4 className="font-semibold mb-3">Quick Link</h4>
+            <ul className="space-y-2 text-gray-600">
+              <li>Home</li>
+              <li>About</li>
+              <li>Blog</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+
+          {/* CATEGORY */}
+          <div>
+            <h4 className="font-semibold mb-3">Category</h4>
+            <ul className="space-y-2 text-gray-600">
+              <li>Lifestyle</li>
+              <li>Technology</li>
+              <li>Travel</li>
+              <li>Business</li>
+            </ul>
+          </div>
+
+          {/* NEWSLETTER */}
+          <div>
+            <h4 className="font-semibold mb-3">Weekly Newsletter</h4>
+            <p className="text-gray-600 text-xs mb-3">
+              Get blog articles and offers via email
             </p>
 
-            <button className="bg-[#16342d] text-white px-6 py-3 text-sm rounded">
-              Explore Featured
-            </button>
-          </div>
+            <input
+              placeholder="Your Email"
+              className="w-full border px-3 py-2 mb-2 text-sm rounded"
+            />
 
-          <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-xl">
-              <Image
-                src={posts[0].image}
-                alt=""
-                width={500}
-                height={600}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
-            <div className="hidden md:block absolute -bottom-6 -left-6 bg-white p-6 shadow text-sm italic font-serif max-w-xs">
-              “The beauty of silence is that it allows the story to speak.”
-            </div>
-          </div>
-        </section>
-
-        {/* 🔷 ARCHIVE */}
-        <section className="bg-[#f3f3f3] py-20 px-8">
-          <div className="max-w-7xl mx-auto">
-
-            <div className="flex justify-between mb-12">
-              <div>
-                <h2 className="font-serif text-2xl">The Archive</h2>
-                <p className="text-zinc-500 text-sm">Selected writings</p>
-              </div>
-              <a className="text-xs uppercase tracking-widest">View All →</a>
-            </div>
-
-            <div className="grid md:grid-cols-12 gap-8">
-
-              {/* BIG POST */}
-              <div className="md:col-span-8 bg-white rounded-lg overflow-hidden hover:shadow-xl transition">
-                <div className="aspect-video">
-                  <Image
-                    src={posts[0].image}
-                    alt=""
-                    width={800}
-                    height={500}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-
-                <div className="p-8">
-                  <p className="text-xs uppercase text-zinc-500 mb-2">
-                    {posts[0].category} • {posts[0].read}
-                  </p>
-
-                  <h3 className="font-serif text-3xl mb-4">
-                    {posts[0].title}
-                  </h3>
-
-                  <p className="text-zinc-600 mb-6">
-                    {posts[0].desc}
-                  </p>
-
-                  <span className="border-b text-sm">Read More</span>
-                </div>
-              </div>
-
-              {/* SIDE */}
-              <div className="md:col-span-4 flex flex-col gap-8">
-                {posts.slice(1, 2).map((post, i) => (
-                  <div key={i} className="bg-white rounded-lg overflow-hidden">
-                    <div className="aspect-square">
-                      <Image src={post.image} alt="" width={400} height={400} className="object-cover w-full h-full" />
-                    </div>
-
-                    <div className="p-6">
-                      <p className="text-xs uppercase text-zinc-500 mb-2">
-                        {post.category}
-                      </p>
-
-                      <h3 className="font-serif text-xl mb-2">
-                        {post.title}
-                      </h3>
-
-                      <p className="text-sm text-zinc-600">
-                        {post.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-
-            {/* SMALL GRID */}
-            <div className="grid md:grid-cols-3 gap-8 mt-16">
-              {posts.slice(2).map((post, i) => (
-                <div key={i} className="bg-white p-4 rounded-lg">
-                  <div className="aspect-[4/3] mb-4 overflow-hidden">
-                    <Image src={post.image} alt="" width={400} height={300} className="object-cover w-full h-full" />
-                  </div>
-
-                  <p className="text-xs uppercase text-zinc-500 mb-2">
-                    {post.category}
-                  </p>
-
-                  <h3 className="font-serif text-lg mb-2">
-                    {post.title}
-                  </h3>
-
-                  <p className="text-sm text-zinc-600">
-                    {post.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* 🔷 NEWSLETTER */}
-        <section className="bg-[#16342d] text-white py-20 text-center px-8">
-          <h2 className="font-serif text-3xl mb-4">
-            The Saturday Letter
-          </h2>
-
-          <p className="text-sm text-zinc-300 mb-8">
-            Weekly curated insights delivered to your inbox.
-          </p>
-
-          <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-            <input className="flex-1 px-4 py-3 text-black" placeholder="Email address" />
-            <button className="bg-white text-black px-6 py-3 text-sm">
+            <button className="w-full bg-blue-600 text-white py-2 text-sm rounded">
               Subscribe
             </button>
           </div>
-        </section>
 
-      </main>
+        </div>
 
-      {/* 🔷 FOOTER */}
-      <footer className="bg-white border-t py-10 text-center text-sm text-zinc-500">
-        © 2024 The Silent Editor
+        <div className="text-center text-xs text-gray-500 pb-6">
+          © JS Template 2023. All Rights Reserved.
+        </div>
       </footer>
+
     </div>
   );
 }
