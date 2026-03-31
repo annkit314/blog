@@ -9,7 +9,7 @@ export default function Home() {
         <h1 className="text-2xl font-bold">MyBlog</h1>
         <div className="flex gap-6 text-sm">
           <a href="#" className="hover:text-blue-500">Home</a>
-          <a href="#" className="hover:text-blue-500">Blog</a>
+          <a href="#" className="hover:text-blue-500">Blogs</a>
           <a href="#" className="hover:text-blue-500">About</a>
         </div>
       </nav>
