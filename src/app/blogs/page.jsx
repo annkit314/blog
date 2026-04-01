@@ -128,7 +128,7 @@ const blogs = [
 
 export default function BlogsPage() {
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12 mt-[70px]">
+        <div className="max-w-7xl mx-auto px-6 py-12 pt-[80px]">
 
             {/* 🔷 HEADER */}
             <div className="mb-10">

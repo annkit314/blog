@@ -1,21 +1,25 @@
+import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="mt-20 bg-gradient-to-b from-[#0f172a] to-[#020617] text-gray-300">
-      
+
       {/* 🔷 MAIN CONTENT */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid gap-12 md:grid-cols-4">
 
         {/* 🔷 ABOUT */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-xl font-bold">
-              M
-            </div>
-            <span className="text-white font-semibold text-lg">MetaBlog</span>
+            <Image
+              src="/logo1.png"
+              alt="logo"
+              width={120}
+              height={50}
+              className="w-auto"
+            />
           </div>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            Discover insights on technology, lifestyle, and business.  
+            Discover insights on technology, lifestyle, and business.
             Stay updated with the latest trends and ideas.
           </p>
 

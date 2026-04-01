@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -34,12 +35,13 @@ export default function Navbar() {
 
           {/* 🔷 LOGO */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg font-bold">
-              M
-            </div>
-            <span className="font-semibold text-lg tracking-tight">
-              MetaBlog
-            </span>
+            <Image
+              src="/logo1.png"
+              alt="logo"
+              width={120}
+              height={50}
+              className="w-auto"
+            />
           </div>
 
           {/* 🔷 DESKTOP MENU */}
@@ -106,9 +108,15 @@ export default function Navbar() {
             </div>
 
             {/* CTA BUTTON */}
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-full transition shadow-sm">
-              Subscribe
-            </button>
+            <a
+              href="https://coinlooty.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-full transition shadow-sm">
+                Login
+              </button>
+            </a>
           </div>
 
           {/* 🔷 MOBILE BUTTON */}
@@ -166,8 +174,8 @@ export default function Navbar() {
                   href={item.path}
                   onClick={() => setOpen(false)}
                   className={`group flex items-center justify-between px-4 py-3 rounded-xl transition ${pathname === item.path
-                      ? "bg-white shadow-sm text-blue-600"
-                      : "text-gray-700 hover:bg-white hover:shadow-sm"
+                    ? "bg-white shadow-sm text-blue-600"
+                    : "text-gray-700 hover:bg-white hover:shadow-sm"
                     }`}
                 >
                   <span className="font-medium">
