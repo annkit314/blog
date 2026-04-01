@@ -18,59 +18,65 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/70 border-b border-gray-200">
+    <>
+      <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/70 border-b border-gray-200">
 
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* 🔷 LOGO */}
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg font-bold">
-            M
-          </div>
-          <span className="font-semibold text-lg tracking-tight">
-            MetaBlog
-          </span>
-        </div>
-
-        {/* 🔷 DESKTOP MENU */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          {["Home", "Blog", "Pages", "Contact"].map((item, i) => (
-            <a
-              key={i}
-              className="relative group cursor-pointer transition"
-            >
-              {item}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-600 transition-all group-hover:w-full"></span>
-            </a>
-          ))}
-        </nav>
-
-        {/* 🔷 RIGHT SIDE */}
-        <div className="hidden md:flex items-center gap-4">
-
-          {/* SEARCH */}
-          <div className="flex items-center bg-gray-100 px-3 py-2 rounded-full focus-within:ring-2 focus-within:ring-blue-500 transition">
-            <FiSearch className="text-gray-500 mr-2" />
-            <input
-              placeholder="Search articles..."
-              className="bg-transparent outline-none text-sm w-40"
-            />
+          {/* 🔷 LOGO */}
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg font-bold">
+              M
+            </div>
+            <span className="font-semibold text-lg tracking-tight">
+              MetaBlog
+            </span>
           </div>
 
-          {/* CTA BUTTON */}
-          <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-full transition shadow-sm">
-            Subscribe
+          {/* 🔷 DESKTOP MENU */}
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            {["Home", "Blog", "Pages", "Contact"].map((item, i) => (
+              <a
+                key={i}
+                className="relative group cursor-pointer transition"
+              >
+                {item}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-600 transition-all group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
+
+          {/* 🔷 RIGHT SIDE */}
+          <div className="hidden md:flex items-center gap-4">
+
+            {/* SEARCH */}
+            <div className="flex items-center bg-gray-100 px-3 py-2 rounded-full focus-within:ring-2 focus-within:ring-blue-500 transition">
+              <FiSearch className="text-gray-500 mr-2" />
+              <input
+                placeholder="Search articles..."
+                className="bg-transparent outline-none text-sm w-40"
+              />
+            </div>
+
+            {/* CTA BUTTON */}
+            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-full transition shadow-sm">
+              Subscribe
+            </button>
+          </div>
+
+          {/* 🔷 MOBILE BUTTON */}
+          <button
+            onClick={() => setOpen(true)}
+            className="md:hidden text-gray-700"
+          >
+            <FiMenu size={24} />
           </button>
         </div>
 
-        {/* 🔷 MOBILE BUTTON */}
-        <button
-          onClick={() => setOpen(true)}
-          className="md:hidden text-gray-700"
-        >
-          <FiMenu size={24} />
-        </button>
-      </div>
+
+
+
+      </header>
 
       <div
         className={`fixed inset-0 z-[999] w-full h-[100vh] ${open ? "visible" : "invisible"
@@ -79,12 +85,12 @@ export default function Navbar() {
         {/* 🔷 OVERLAY */}
         <div
           onClick={() => setOpen(false)}
-          className={`absolute inset-0 w-full h-[100vh] bg-black/40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"
+          className={`fixed inset-0 w-full h-[100vh] bg-black/40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"
             }`}
         />
 
         <div
-          className={`absolute top-0 right-0 h-full w-[70%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col ${open ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 left-0 w-full h-[100dvh] bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col ${open ? "translate-y-0" : "-translate-y-full"
             }`}
         >
           {/* 🔷 HEADER */}
@@ -161,8 +167,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-
-    </header>
+    </>
   );
 }
