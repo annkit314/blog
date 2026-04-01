@@ -48,7 +48,7 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="bg-[#f7f7f7] text-[#1a1a1a] mt-[70px]">
+    <div className="bg-[#f7f7f7] text-[#1a1a1a] mt-[100px]">
 
       {/* 🔥 HERO SLIDER */}
       <section className="w-full mx-auto px-4 md:px-6 mt-[5px]">
