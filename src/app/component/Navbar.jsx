@@ -3,9 +3,18 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Blogs", path: "/blogs" },
+    { name: "Newsletters", path: "/newsletters" },
+    { name: "About", path: "/about" },
+  ];
 
 
 
@@ -19,7 +28,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/70 border-b border-gray-200">
+      <header className="fixed w-full top-0 z-50 backdrop-blur-lg bg-white/70 border-b border-gray-200">
 
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -35,15 +44,53 @@ export default function Navbar() {
 
           {/* 🔷 DESKTOP MENU */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            {["Home", "Blog", "Pages", "Contact"].map((item, i) => (
-              <a
-                key={i}
-                className="relative group cursor-pointer transition"
-              >
-                {item}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-600 transition-all group-hover:w-full"></span>
-              </a>
-            ))}
+            <Link
+              href="/"
+              className={`relative group transition ${pathname === "/" ? "text-blue-600" : ""
+                }`}
+            >
+              Home
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-blue-600 transition-all ${pathname === "/" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+              ></span>
+            </Link>
+
+            <Link
+              href="/blogs"
+              className={`relative group transition ${pathname === "/blogs" ? "text-blue-600" : ""
+                }`}
+            >
+              Blogs
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-blue-600 transition-all ${pathname === "/blogs" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+              ></span>
+            </Link>
+
+            <Link
+              href="/newsletters"
+              className={`relative group transition ${pathname === "/newsletters" ? "text-blue-600" : ""
+                }`}
+            >
+              Newsletters
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-blue-600 transition-all ${pathname === "/newsletters" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+              ></span>
+            </Link>
+
+            <Link
+              href="/about"
+              className={`relative group transition ${pathname === "/about" ? "text-blue-600" : ""
+                }`}
+            >
+              About us
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-blue-600 transition-all ${pathname === "/about" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+              ></span>
+            </Link>
           </nav>
 
           {/* 🔷 RIGHT SIDE */}
@@ -113,20 +160,24 @@ export default function Navbar() {
 
             {/* NAV LINKS (CARD STYLE) */}
             <div className="bg-gray-50 rounded-2xl p-2 space-y-1 shadow-sm">
-              {["Home", "Blog", "Pages", "Contact"].map((item, i) => (
-                <div
+              {navItems.map((item, i) => (
+                <Link
                   key={i}
+                  href={item.path}
                   onClick={() => setOpen(false)}
-                  className="group flex items-center justify-between px-4 py-1 rounded-xl cursor-pointer transition hover:bg-white hover:shadow-sm"
+                  className={`group flex items-center justify-between px-4 py-3 rounded-xl transition ${pathname === item.path
+                      ? "bg-white shadow-sm text-blue-600"
+                      : "text-gray-700 hover:bg-white hover:shadow-sm"
+                    }`}
                 >
-                  <span className="font-medium text-gray-700 group-hover:text-blue-600">
-                    {item}
+                  <span className="font-medium">
+                    {item.name}
                   </span>
 
                   <span className="text-gray-400 group-hover:translate-x-1 transition">
                     →
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
 

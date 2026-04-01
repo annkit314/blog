@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const posts = Array(9).fill({
   title: "The Impact of Technology on the Workplace: How Technology is Changing",
@@ -47,7 +48,7 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="bg-[#f7f7f7] text-[#1a1a1a]">
+    <div className="bg-[#f7f7f7] text-[#1a1a1a] mt-[70px]">
 
       {/* 🔥 HERO SLIDER */}
       <section className="w-full mx-auto px-4 md:px-6 mt-[5px]">
@@ -93,9 +94,8 @@ export default function BlogPage() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition ${
-                  current === i ? "bg-white scale-110" : "bg-white/50"
-                }`}
+                className={`w-2.5 h-2.5 rounded-full transition ${current === i ? "bg-white scale-110" : "bg-white/50"
+                  }`}
               />
             ))}
           </div>
@@ -137,11 +137,14 @@ export default function BlogPage() {
         </div>
 
         {/* LOAD MORE */}
-        <div className="flex justify-center mt-10">
-          <button className="bg-white px-6 py-2 rounded-full text-sm shadow hover:shadow-md transition">
-            Load More
-          </button>
-        </div>
+        <Link
+          href="/blogs"
+          className="flex justify-center mt-10"
+        >
+          <span className="bg-white px-6 py-2 rounded-full text-sm shadow hover:shadow-md transition cursor-pointer">
+            View More
+          </span>
+        </Link>
       </section>
 
       {/* 🔥 AD BANNER */}
